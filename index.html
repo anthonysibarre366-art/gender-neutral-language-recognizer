@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gender Neutral Language Recognizer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <header>
+    <h1>Gender Neutral Language Recognizer</h1>
+    <p>Upload a text file to see which wording is gender-specific, how often it appears, and what you could write instead.</p>
+  </header>
+
+  <label id="drop" class="drop" for="file" tabindex="0">
+    <span class="demo" aria-hidden="true">The <s>chairman</s> <b>chairperson</b> will address the committee.</span>
+    <strong>Drop a .txt file here</strong>
+    <span class="sub">or click to choose one from your computer</span>
+    <input id="file" type="file" class="sr">
+  </label>
+  <p id="fileName" class="file" hidden></p>
+
+  <section id="notice" class="notice" role="status" hidden><h2></h2><p></p></section>
+
+  <section id="results" hidden>
+    <h2 id="summary"></h2>
+    <div class="grid">
+      <div class="card">
+        <table>
+          <thead><tr><th>Detected term</th><th class="num">Occurrences</th><th>Suggested alternatives</th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+      <div class="card"><h3>Your text, highlighted</h3><pre id="preview"></pre></div>
+    </div>
+    <p class="hint">Suggestions are for review. The right replacement depends on the context of your sentence.</p>
+  </section>
+
+  <details class="card about">
+    <summary>How it works and which terms are checked</summary>
+    <p>Every term is matched by a single regular expression. The <code>i</code> flag ignores capitalization and <code>\b</code> keeps matches to whole words, so "he" is never found inside "the".</p>
+    <pre id="pattern"></pre>
+    <ul id="terms" class="terms"></ul>
+  </details>
+</main>
+<footer>BSCS 3A, Automata and Language Theory. Anthony P. Sibarre, Charleen E. Amper, Jeremiah Karl S. Aleria, Darl C. Destriza.</footer>
+<script src="recognizer.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
